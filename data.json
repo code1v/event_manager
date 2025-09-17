@@ -1,0 +1,26 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "title": "Hackathon",
+            "date": "2025-10-14",
+            "location": "Reading Room",
+            "category": "Tech"
+        },
+        {
+            "id": 2,
+            "title": "Sports Meet",
+            "date": "2025-09-29",
+            "location": "Ground",
+            "category": "Sports"
+        }
+    ],
+    "registrations": {
+        "1": [
+            "ABC"
+        ],
+        "2": [
+            "John"
+        ]
+    }
+}

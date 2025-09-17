@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>🎉 Student Events</title>
@@ -9,29 +10,35 @@
       background: linear-gradient(to right, #ff9a9e, #fad0c4);
       min-height: 100vh;
     }
+
     .event-card {
       transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .event-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
+
     .countdown {
       font-size: 0.9rem;
       font-weight: bold;
       color: #333;
     }
+
     .registrations {
       background: #f8f9fa;
       border-radius: 8px;
       padding: 8px;
       margin-top: 10px;
     }
+
     .registrations h6 {
       margin-bottom: 5px;
     }
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-dark bg-dark">
@@ -59,25 +66,26 @@
     <!-- Event Cards -->
     <div class="row" id="eventGrid">
       {% for event in events %}
-      <div class="col-md-4 mb-4 event-item" 
-           data-title="{{event.title}}" 
-           data-category="{{event.category}}" 
-           data-date="{{event.date}}">
+      <div class="col-md-4 mb-4 event-item"
+           data-title="{{ event.title }}"
+           data-category="{{ event.category }}"
+           data-date="{{ event.date }}">
         <div class="card event-card shadow-sm">
           <div class="card-body">
             <h5 class="card-title">{{ event.title }}</h5>
             <p><strong>Date:</strong> {{ event.date }}</p>
             <p><strong>Location:</strong> {{ event.location }}</p>
             <p><span class="badge bg-info">{{ event.category }}</span></p>
-            <p class="countdown" id="countdown-{{event.id}}" data-date="{{event.date}}">Loading...</p>
-            <a href="/register/{{event.id}}" class="btn btn-primary">Register 🎟️</a>
+            <p class="countdown" id="countdown-{{ event.id }}" data-date="{{ event.date }}">Loading...</p>
+            <a href="/register/{{ event.id }}" class="btn btn-primary">Register 🎟️</a>
 
             <!-- Registrations Section -->
             <div class="registrations">
-              <h6>👥 Registrations ({{ registrations[event.id]|length }})</h6>
-              {% if registrations[event.id] %}
+              <h6>👥 Registrations ({{ registrations[event.id|string]|length }})</h6>
+
+              {% if registrations[event.id|string] %}
                 <ul class="list-unstyled mb-0">
-                  {% for student in registrations[event.id] %}
+                  {% for student in registrations[event.id|string] %}
                     <li>✅ {{ student }}</li>
                   {% endfor %}
                 </ul>
@@ -85,6 +93,7 @@
                 <p class="text-muted">No registrations yet.</p>
               {% endif %}
             </div>
+
           </div>
         </div>
       </div>
@@ -139,7 +148,9 @@
         }, 1000);
       });
     }
+
     startCountdown();
   </script>
 </body>
+
 </html>
